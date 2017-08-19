@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
         <Button
-            android:id="@+id/gallerybutton"
+            android:id="@+id/galleryButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
