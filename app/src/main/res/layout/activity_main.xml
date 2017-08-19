@@ -23,7 +23,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="image"/>
+                    android:textSize="20sp"
+                    android:text="Upload your image "/>
 
                 <ProgressBar
                     android:layout_width="wrap_content"
