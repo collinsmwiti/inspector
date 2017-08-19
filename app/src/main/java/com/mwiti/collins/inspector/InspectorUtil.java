@@ -24,55 +24,6 @@ import java.util.List;
 
 //class InspectorUtil
 public final class InspectorUtil {
-    //to throw exception if there is no instances
-    private InspectorUtil() {
-        throw new UnsupportedOperationException("No instances");
-    }
-
-    /**
-     * @param context
-     * @param data
-     * @return
-     */
-    // I have overridden with annotation nullable in order to allow the value to be set to the special value NULL instead of the usual possible values of the data type.
-    // used to retrieve selected image
-    @Nullable
-    public static byte[] retrieveSelectedImage(@NonNull Context context, @NonNull Intent data) {
-        InputStream inStream = null;
-        Bitmap bitmap = null;
-        try {
-            inStream = context.getContentResolver().openInputStream(data.getData());
-            bitmap = BitmapFactory.decodeStream(inStream);
-            final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
-            return outStream.toByteArray();
-        } catch (FileNotFoundException e) {
-            return null;
-        } finally {
-            if (inStream != null) {
-                try {
-                    inStream.close();
-                } catch (IOException ignored) {
-                }
-            }
-            if (bitmap != null) {
-                bitmap.recycle();
-            }
-        }
-    }
-
-    //I have used nonnull annotation to prevent null pointer exception from taking place
-    @NonNull
-    public static Activity unwrapActivity(@NonNull Context startFrom) {
-        while (startFrom instanceof ContextWrapper) {
-            if (startFrom instanceof Activity) {
-                return ((Activity) startFrom);
-            }
-            startFrom = ((ContextWrapper) startFrom).getBaseContext();
-        }
-        throw new IllegalStateException("The Context cannot be unwrapped to an Activity!");
-    }
-
     //I have used T which is used for parameterization. It makes use of Java Generics to produce parametized classes
     @Nullable
     public static <T> T firstChildOfType(@NonNull View root, @NonNull Class<T> type) {
@@ -110,5 +61,47 @@ public final class InspectorUtil {
             }
         }
         return children;
+    }
+    //I have used nonnull annotation to prevent null pointer exception from taking place
+    @NonNull
+    public static Activity unwrapActivity(@NonNull Context startFrom) {
+        while (startFrom instanceof ContextWrapper) {
+            if (startFrom instanceof Activity) {
+                return ((Activity) startFrom);
+            }
+            startFrom = ((ContextWrapper) startFrom).getBaseContext();
+        }
+        throw new IllegalStateException("The Context cannot be unwrapped to an Activity!");
+    }
+
+    //to throw exception if there is no instances
+    private InspectorUtil() {
+        throw new UnsupportedOperationException("There is no instances detected");
+    }
+    // I have overridden with annotation nullable in order to allow the value to be set to the special value NULL instead of the usual possible values of the data type.
+    // used to retrieve selected image
+    @Nullable
+    public static byte[] retrieveSelectedImage(@NonNull Context context, @NonNull Intent data) {
+        InputStream inStream = null;
+        Bitmap bitmap = null;
+        try {
+            inStream = context.getContentResolver().openInputStream(data.getData());
+            bitmap = BitmapFactory.decodeStream(inStream);
+            final ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+            return outStream.toByteArray();
+        } catch (FileNotFoundException e) {
+            return null;
+        } finally {
+            if (inStream != null) {
+                try {
+                    inStream.close();
+                } catch (IOException ignored) {
+                }
+            }
+            if (bitmap != null) {
+                bitmap.recycle();
+            }
+        }
     }
 }

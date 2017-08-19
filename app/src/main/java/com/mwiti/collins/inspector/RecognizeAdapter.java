@@ -20,17 +20,6 @@ import clarifai2.dto.prediction.Concept;
 
 //class RecognizeAdapter inheriting from RecyclerView.Adapter under RecognizeAdapter.Holder
 public class RecognizeAdapter extends RecyclerView.Adapter<RecognizeAdapter.Holder> {
-
-    @NonNull
-    private List<Concept> concepts = new ArrayList<>();
-
-    //constructor RecognizeAdapter is used to check the concepts and notify if data set is changed
-    public RecognizeAdapter setData(@NonNull List<Concept> concepts) {
-        this.concepts = concepts;
-        notifyDataSetChanged();
-        return this;
-    }
-
     // class holder inheriting from RecyclerView
     static final class Holder extends RecyclerView.ViewHolder {
 
@@ -46,6 +35,14 @@ public class RecognizeAdapter extends RecyclerView.Adapter<RecognizeAdapter.Hold
         }
     }
 
+    //used to bind the context by checking its position, give the final concept, select concept by name if not null and id and give the
+    //probability of the positioned concept
+    @Override public void onBindViewHolder(Holder holder, int position) {
+        final Concept concept = concepts.get(position);
+        holder.label.setText(concept.name() != null ? concept.name() : concept.id());
+        holder.probability.setText(String.valueOf(concept.value()));
+    }
+
     //used for counting items
     @Override public int getItemCount() {
         return concepts.size();
@@ -56,12 +53,16 @@ public class RecognizeAdapter extends RecyclerView.Adapter<RecognizeAdapter.Hold
         return new Holder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recognize_concept, parent, false));
     }
 
-    //used to bind the context by checking its position, give the final concept, select concept by name if not null and id and give the
-    //probability of the positioned concept
-    @Override public void onBindViewHolder(Holder holder, int position) {
-        final Concept concept = concepts.get(position);
-        holder.label.setText(concept.name() != null ? concept.name() : concept.id());
-        holder.probability.setText(String.valueOf(concept.value()));
+
+
+    @NonNull
+    private List<Concept> concepts = new ArrayList<>();
+
+    //constructor RecognizeAdapter is used to check the concepts and notify if data set is changed
+    public RecognizeAdapter setData(@NonNull List<Concept> concepts) {
+        this.concepts = concepts;
+        notifyDataSetChanged();
+        return this;
     }
 
 }

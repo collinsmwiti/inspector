@@ -18,37 +18,10 @@ import timber.log.Timber;
 
 public class App extends Application {
 
-    // In an app, rather than attaching singletons(a class that can have only one object such as the API client instance) to your Application instance,
-    // it's recommended that you use e.g. Dagger 2 (most efficient dependency injection frameworks where it  analyzes these dependencies for you and generates code to help wire them together.), and inject your client instance.
-    // Since that would be a distraction here, we will just use a regular singleton.
-    private static App INSTANCE;
-
-    //is used to indicate to the user if the instance is not created, it should notify the user to create the app
-    @NonNull
-    public static App get() {
-        final App instance = INSTANCE;
-        if (instance == null) {
-            throw new IllegalStateException("App has not been created yet!");
-        }
-        return instance;
-    }
-
-    @Nullable
-    private ClarifaiClient client;
-
-    @NonNull
-    public ClarifaiClient clarifaiClient() {
-        final ClarifaiClient client = this.client;
-        if (client == null) {
-            throw new IllegalStateException("Cannot use client before initialized");
-        }
-        return client;
-    }
-
     @Override
     public void onCreate() {
         INSTANCE = this;
-        client = new ClarifaiBuilder(getString(R.string.inspector_id), getString(R.string.inspector_secret))
+        client = new ClarifaiBuilder(getString(R.string.clarifai_id), getString(R.string.clarifai_secret))
                 // Optionally customize HTTP client via a custom OkHttp instance
                 .client(new OkHttpClient.Builder()
                         .readTimeout(30, TimeUnit.SECONDS) // This is to increase timeout for poor mobile networks
@@ -67,4 +40,34 @@ public class App extends Application {
         // Initialize our logging
         Timber.plant(new Timber.DebugTree());
     }
+
+    // In an app, rather than attaching singletons(a class that can have only one object such as the API client instance) to your Application instance,
+    // it's recommended that you use e.g. Dagger 2 (most efficient dependency injection frameworks where it  analyzes these dependencies for you and generates code to help wire them together.), and inject your client instance.
+    // Since that would be a distraction here, we will just use a regular singleton.
+    private static App INSTANCE;
+
+    @Nullable
+    private ClarifaiClient client;
+
+    @NonNull
+    public ClarifaiClient clarifaiClient() {
+        final ClarifaiClient client = this.client;
+        if (client == null) {
+            throw new IllegalStateException("You cannot use client before its initialized");
+        }
+        return client;
+    }
+
+
+    //is used to indicate to the user if the instance is not created, it should notify the user to create the app
+    @NonNull
+    public static App get() {
+        final App instance = INSTANCE;
+        if (instance == null) {
+            throw new IllegalStateException("Please create your app!");
+        }
+        return instance;
+    }
+
+
 }
