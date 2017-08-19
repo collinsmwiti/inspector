@@ -55,12 +55,13 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         mCreateUserButton.setOnClickListener(this);
     }
 
+    //check if there is a change in authentication state (start)
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
-
+    //check if there is a change in authentication state (stop)
     @Override
     public void onStop() {
         super.onStop();
