@@ -46,7 +46,7 @@ public class RecognizeAdapter extends RecyclerView.Adapter<RecognizeAdapter.Hold
         }
     }
 
-    //used for counting
+    //used for counting items
     @Override public int getItemCount() {
         return concepts.size();
     }
