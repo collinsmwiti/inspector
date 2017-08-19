@@ -16,6 +16,7 @@ import timber.log.Timber;
  * Created by collins on 8/19/17.
  */
 
+//class App
 public class App extends Application {
 
     @Override

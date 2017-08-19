@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WrapperActivity"></activity>
+        <activity android:name=".WrapperActivity" />
+        <activity android:name=".CreateAccount"></activity>
     </application>
 
 </manifest>
