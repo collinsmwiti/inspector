@@ -75,7 +75,7 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
 
         if (view == mLoginTextView) {
-            Intent intent = new Intent(CreateAccount.this, LoginActivity.class);
+            Intent intent = new Intent(CreateAccount.this, SplashActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();

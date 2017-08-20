@@ -84,12 +84,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == mRegisterTextView) {
-            Intent intent = new Intent(LoginActivity.this, CreateAccount.class);
+            Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
             startActivity(intent);
             finish();
         }
         if (view == mPasswordLoginButton) {
-            Intent intent = new Intent(LoginActivity.this, CreateAccount.class);
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
