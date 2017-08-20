@@ -89,11 +89,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             finish();
         }
         if (view == mPasswordLoginButton) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        if (view == mPasswordLoginButton) {
             loginWithPassword();
         }
 
