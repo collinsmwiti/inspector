@@ -43,15 +43,15 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile('com.mikepenz:materialdrawer:5.6.0') { transitive = true }
+    // runtime permissions from version marshmellow and above
+    // For logging HTTP outbound + inbound data
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.clarifai.clarifai-api2:core:2.0.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
-    // runtime permissions from version marshmellow and above
     compile 'io.reactivex:rxjava:1.1.10'
     compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.1@aar'
-    // For logging HTTP outbound + inbound data
     compile 'com.jakewharton.timber:timber:4.3.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     compile 'com.jakewharton:butterknife:8.8.1'

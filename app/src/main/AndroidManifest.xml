@@ -22,7 +22,8 @@
         </activity>
         <activity android:name=".WrapperActivity" />
         <activity android:name=".CreateAccount" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".WelcomeActivity"></activity>
     </application>
 
 </manifest>
